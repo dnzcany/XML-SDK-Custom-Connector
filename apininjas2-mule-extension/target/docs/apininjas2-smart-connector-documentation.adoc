@@ -1,0 +1,102 @@
+:toc:               left
+:toc-title:         apininjas2 Smart Connector Module
+:toclevels:         2
+:last-update-label!:
+:docinfo:
+:source-highlighter: coderay
+:icons: font
+
+
+= apininjas2 Smart Connector Module Documentation Reference
+
++++
+This module relies in runtime provided components
++++
+
+
+== Configurations
+---
+[[config]]
+=== Config
+
+
+==== Parameters
+[cols=".^20%,.^20%,.^35%,.^20%,^.^5%", options="header"]
+|======================
+| Name | Type | Description | Default Value | Required
+|Name | String | The name for this configuration. Connectors reference the configuration with this name. | | *x*{nbsp}
+| Connection a| <<config_connection, Connection>>
+ | The connection types that can be provided to this configuration. | | *x*{nbsp}
+|======================
+
+==== Connection Types
+[[config_connection]]
+===== Connection
+
+
+
+==== Associated Operations
+* <<HttpRequest>> {nbsp}
+* <<set-payload-hardcoded-two-times>> {nbsp}
+
+
+
+== Operations
+
+[[HttpRequest]]
+=== Http Request
+`<module-apininjas2:http-request>`
+
++++
+Request Dummy JSON
++++
+
+==== Parameters
+[cols=".^20%,.^20%,.^35%,.^20%,^.^5%", options="header"]
+|======================
+| Name | Type | Description | Default Value | Required
+| Configuration | String | The name of the configuration to use. | | *x*{nbsp}
+| Target Variable a| String |  +++The name of a variable on which the operation's output will be placed+++ |  | {nbsp}
+| Target Value a| String |  +++An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable+++ |  +++#[payload]+++ | {nbsp}
+|======================
+
+==== Output
+[cols=".^50%,.^50%"]
+|======================
+| *Type* a| String
+|======================
+
+==== For Configurations.
+* <<config>> {nbsp}
+
+
+
+[[set-payload-hardcoded-two-times]]
+=== Set Payload Hardcoded Two Times
+`<module-apininjas2:set-payload-hardcoded-two-times>`
+
++++
+Sets the payload to the String value 'Wubba Lubba Dub Dub Dub Dub' (uses references to local operation)
++++
+
+==== Parameters
+[cols=".^20%,.^20%,.^35%,.^20%,^.^5%", options="header"]
+|======================
+| Name | Type | Description | Default Value | Required
+| Configuration | String | The name of the configuration to use. | | *x*{nbsp}
+| Target Variable a| String |  +++The name of a variable on which the operation's output will be placed+++ |  | {nbsp}
+| Target Value a| String |  +++An expression that will be evaluated against the operation's output and the outcome of that expression will be stored in the target variable+++ |  +++#[payload]+++ | {nbsp}
+|======================
+
+==== Output
+[cols=".^50%,.^50%"]
+|======================
+| *Type* a| String
+|======================
+
+==== For Configurations.
+* <<config>> {nbsp}
+
+
+
+

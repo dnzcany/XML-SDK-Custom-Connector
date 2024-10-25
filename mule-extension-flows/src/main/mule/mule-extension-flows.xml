@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:module-apininjas="http://www.mulesoft.org/schema/mule/module-apininjas" xmlns:module-mulesy-calculator-connector="http://www.mulesoft.org/schema/mule/module-mulesy-calculator-connector"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/module-mulesy-calculator-connector http://www.mulesoft.org/schema/mule/module-mulesy-calculator-connector/current/mule-module-mulesy-calculator-connector.xsd
+http://www.mulesoft.org/schema/mule/module-apininjas http://www.mulesoft.org/schema/mule/module-apininjas/current/mule-module-apininjas.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="41963eac-c012-4988-8c41-36aa591a0efd" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="mule-extension-flowsFlow" doc:id="33cfb0f6-271b-4f88-abd1-2a0875558980" >
+		<http:listener doc:name="Listener" doc:id="d3bc937e-18e9-4012-93ce-2bb6ce9886ee" config-ref="HTTP_Listener_config" path="/json"/>
+		<module-apininjas:http-request doc:name="Http request" doc:id="9c868c0b-2eb0-49fa-b926-e57360732229" />
+		<ee:transform doc:name="Transform Message" doc:id="f1ee178b-b77c-4692-a511-e99d20835afc" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>

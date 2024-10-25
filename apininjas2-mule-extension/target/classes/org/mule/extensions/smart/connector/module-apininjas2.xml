@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="apininjas2 Smart Connector"
+        prefix="module-apininjas2"
+        doc:description="This module relies in runtime provided components"
+
+                xmlns="http://www.mulesoft.org/schema/mule/module"
+        xmlns:mule="http://www.mulesoft.org/schema/mule/core"
+        xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+        xmlns:tns="http://www.mulesoft.org/schema/mule/module-apininjas2"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:http="http://www.mulesoft.org/schema/mule/http"
+        xsi:schemaLocation="
+           http://www.mulesoft.org/schema/mule/module http://www.mulesoft.org/schema/mule/module/current/mule-module.xsd
+           http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+           http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+           http://www.mulesoft.org/schema/mule/module-apininjas http://www.mulesoft.org/schema/mule/module-apininjas2/current/mule-module-apininjas2.xsd">
+
+    <http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="14d699dd-0b15-4bfa-9161-7db53a2807d5" >
+		<http:request-connection protocol="HTTPS" host="api.api-ninjas.com" />
+	</http:request-config>
+
+	<operation name="HttpRequest"
+		doc:description="Request Dummy JSON">
+		
+		<body>
+			<http:request method="GET" doc:name="Request" doc:id="fc8b4aad-f827-49b6-931c-29dca2045014" config-ref="HTTP_Request_configuration" path="/v1/facts">
+			<http:headers ><![CDATA[#[output application/java
+---
+{
+	"X-Api-Key" : "dQaVJKvauMUTcKofqxvndA==SD5PgGnLOYTGk2MA"
+}]]]></http:headers>
+		</http:request>
+		</body>
+		<output type="string" doc:description="Payload's output" />
+	</operation>
+
+    <operation name="set-payload-hardcoded-two-times" doc:description="Sets the payload to the String value 'Wubba Lubba Dub Dub Dub Dub' (uses references to local operation)">
+        <body>
+            
+            <mule:set-payload value="#[payload ++ ' Dub Dub']"/>
+        </body>
+        <output type="string" doc:description="Payload's output"/>
+    </operation>
+
+ </module>
